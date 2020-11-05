@@ -44,9 +44,7 @@ const tweetsByUser = async (screen_name, callback) => {
             }
 
         }
-
         callback(undefined, tweets, 200)
-
     })
 }
 
@@ -80,8 +78,8 @@ const tweetsByHashtag = async (hashtag, callback) => {
         var tweets = []
         for (var i = 0; i < data.statuses.length; i++) {
             tweets.push({
-                created_at: data.statuses[i].created_at,
                 text: data.statuses[i].text,
+                user_screen_name: data.statuses[i].user.screen_name,
                 retweet_count: data.statuses[i].retweet_count
             })
         }
@@ -101,7 +99,6 @@ const tweetsByLocation = async (lat, lng, radius, callback) => {
 
     var loc = `${lat},${lng},${radius}`
     var options = {
-        q: 'since:7 days',
         geocode: loc,
         count: 10
     };
@@ -124,7 +121,7 @@ const tweetsByLocation = async (lat, lng, radius, callback) => {
         for (var i = 0; i < data.statuses.length; i++) {
             tweets.push({
                 text: data.statuses[i].text,
-                user_screen_name: data.statuses[i].in_reply_to_screen_name
+                user_screen_name: data.statuses[i].user.screen_name
             })
         }
         
