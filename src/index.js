@@ -19,6 +19,16 @@ app.use(section2Router)
 app.use(section3Router)
 app.use(section4Router)
 
+app.use(function(req, res, next){
+  res.status(404);
+
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
+
+});
+
 app.listen(port,()=>{
     console.log('Server running on port ' + port)
 })
