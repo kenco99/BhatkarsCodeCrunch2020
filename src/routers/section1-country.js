@@ -11,7 +11,7 @@ router.get('/country/name/:country_name', async (req, res) => {
             if (error) {
                 return res.status(status).send(error)
             }
-            delete data.timezones;
+            delete data.totalTimezones;
             res.status(status).send(data)
         })
     } catch (e) {
